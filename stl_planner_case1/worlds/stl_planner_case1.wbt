@@ -1,0 +1,534 @@
+#VRML_SIM R2021b utf8
+WorldInfo {
+  info [
+    "Autonomous Vehicle Simulation"
+    "The simple controller example uses an on-board camera to follow the yellow road lines and a SICK sensor to avoid the obstacles."
+    "The control of the vehicle is done using the driver library."
+    "The vehicle based on the Car PROTO is modelled with realistic physics properties: motor torques, body mass, friction forces, suspensions, etc."
+  ]
+  title "City"
+  ERP 0.6
+  basicTimeStep 10
+  coordinateSystem "NUE"
+  lineScale 1
+  contactProperties [
+    ContactProperties {
+      coulombFriction [
+        8
+      ]
+      softCFM 1e-05
+      bumpSound ""
+      rollSound ""
+      slideSound ""
+    }
+    ContactProperties {
+      material2 "CitroenCZeroWheels"
+      coulombFriction [
+        8
+      ]
+      softCFM 1e-05
+      bumpSound ""
+      rollSound ""
+      slideSound ""
+    }
+    ContactProperties {
+      material2 "ToyotaPriusWheels"
+      coulombFriction [
+        8
+      ]
+      softCFM 1e-05
+      bumpSound ""
+      rollSound ""
+      slideSound ""
+    }
+    ContactProperties {
+      material2 "LincolnMKZWheels"
+      coulombFriction [
+        8
+      ]
+      softCFM 1e-05
+      bumpSound ""
+      rollSound ""
+      slideSound ""
+    }
+    ContactProperties {
+      material2 "RangeRoverSportSVRWheels"
+      coulombFriction [
+        8
+      ]
+      softCFM 1e-05
+      bumpSound ""
+      rollSound ""
+      slideSound ""
+    }
+    ContactProperties {
+      material2 "TruckWheels"
+      coulombFriction [
+        8
+      ]
+      softCFM 1e-05
+      bumpSound ""
+      rollSound ""
+      slideSound ""
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.4451135982932704 0.8146498111065823 0.3717789260816525 4.680814996076588
+  position -13.428373147112145 16.671566154969987 0.8639234087325556
+  near 1
+  followSmoothness 0
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+DEF GROUND Solid {
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.8
+        baseColorMap ImageTexture {
+          url [
+            "https://raw.githubusercontent.com/cyberbotics/webots/R2021b/projects/vehicles/worlds/textures/ground.jpg"
+          ]
+        }
+        roughness 0.5
+        metalness 0
+        textureTransform TextureTransform {
+          scale 500 500
+        }
+      }
+      geometry DEF GROUND_PLANE Plane {
+        size 2000 2000
+      }
+    }
+  ]
+  boundingObject USE GROUND_PLANE
+  locked TRUE
+}
+StraightRoadSegment {
+  translation 0 0.02 140
+  rotation 0 1 0 3.1416
+  name "road(3)"
+  id "3"
+  startJunction "23"
+  endJunction "22"
+  width 21.5
+  numberOfLanes 4
+  numberOfForwardLanes 2
+  lines [
+    RoadLine {
+    }
+    RoadLine {
+      color 0.85 0.75 0.3
+      type "double"
+    }
+  ]
+  rightBorder FALSE
+  leftBorder FALSE
+  rightBarrier TRUE
+  leftBarrier TRUE
+  length 160
+}
+WorkBarrier {
+  translation 1 0 37
+  name "work barrier(1)"
+  enablePhysics TRUE
+}
+WorkBarrier {
+  translation 3 0 37
+  name "work barrier(2)"
+  enablePhysics TRUE
+}
+WorkBarrier {
+  translation 3 0 39
+  name "work barrier(3)"
+  enablePhysics TRUE
+}
+WorkBarrier {
+  translation 3 0 41
+  name "work barrier(4)"
+  enablePhysics TRUE
+}
+BmwX5 {
+  translation -2.42 0.4 -5.39
+  color 0.933333 0.933333 0.92549
+  name "robot_2"
+  controller "STL_ctl_Tx_case1"
+  sensorsSlotFront [
+    SickLms291 {
+      translation 0 -2.4286129e-17 -0.06
+    }
+  ]
+  sensorsSlotTop [
+    Camera {
+      translation 0 -0.05 -0.72
+      children [
+        Transform {
+          translation 0 0 0.05
+          rotation 1 0 0 1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.8 0.8 0.8
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.1
+                radius 0.04
+              }
+            }
+          ]
+        }
+      ]
+      fieldOfView 1
+      width 128
+    }
+  ]
+  sensorsSlotCenter [
+    Emitter {
+      name "emitter_AV2"
+      channel 2
+    }
+    Compass {
+      rotation 0 1 0 -3.141592653589793
+      name "compass_AV2"
+      resolution 0.01
+    }
+    GPS {
+      translation 0 0 -3.1
+      name "global_gps_AV2"
+    }
+    Gyro {
+    }
+    Display {
+      width 200
+      height 150
+    }
+  ]
+}
+BmwX5 {
+  translation 2.94006 0.4 -6.62
+  rotation 0 1 0 -5.307179586466759e-06
+  color 0.45098 0.823529 0.0862745
+  name "robot_4"
+  controller "STL_ctl_Rx_case1"
+  sensorsSlotFront [
+    SickLms291 {
+      translation 0 -2.4286129e-17 -0.06
+    }
+  ]
+  sensorsSlotTop [
+    Camera {
+      translation 0 -0.05 -0.72
+      children [
+        Transform {
+          translation 0 0 0.05
+          rotation 1 0 0 1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.8 0.8 0.8
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.1
+                radius 0.04
+              }
+            }
+          ]
+        }
+      ]
+      fieldOfView 1
+      width 128
+    }
+  ]
+  sensorsSlotCenter [
+    Receiver {
+      name "receiver_AV4"
+      channel 2
+    }
+    Compass {
+      rotation 0 1 0 -3.141592653589793
+      name "compass_AV4"
+      resolution 0.01
+    }
+    GPS {
+      translation 0 0 -3.1
+      name "global_gps_AV4"
+    }
+    Gyro {
+    }
+    Display {
+      width 200
+      height 150
+    }
+  ]
+}
+Solid {
+  translation 3 0 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.937255 0.160784 0.160784
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "solid(1)"
+}
+Solid {
+  translation -2.5 0 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "solid(2)"
+}
+Solid {
+  translation -2.5 0 15
+  children [
+    Shape {
+      appearance PBRAppearance {
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "solid(3)"
+}
+Solid {
+  translation -2.5 0 30
+  children [
+    Shape {
+      appearance PBRAppearance {
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "solid(4)"
+}
+Solid {
+  translation -2.5 0 45
+  children [
+    Shape {
+      appearance PBRAppearance {
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "solid(5)"
+}
+Solid {
+  translation -2.5 0 60
+  children [
+    Shape {
+      appearance PBRAppearance {
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "solid(6)"
+}
+Solid {
+  translation 3 0 15
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.937255 0.160784 0.160784
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "goal_0(3)"
+}
+Solid {
+  translation 3 0 30
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.937255 0.160784 0.160784
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "goal_0(4)"
+}
+Solid {
+  translation 3 0 30
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.937255 0.160784 0.160784
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "goal_0(6)"
+}
+Solid {
+  translation -8.61 0 34.22
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.988235 0.913725 0.309804
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 1.5
+      }
+    }
+  ]
+  name "goal_0(7)"
+}
+Solid {
+  translation 3 0 45
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.937255 0.160784 0.160784
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "goal_0(1)"
+}
+Solid {
+  translation 3 0 60
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.937255 0.160784 0.160784
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "goal_0(5)"
+}
+Solid {
+  translation 8 0 60
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.501961 0.901961 0.901961
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "goal_0(8)"
+}
+Solid {
+  translation 8 0 45
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.501961 0.901961 0.901961
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "goal_0(9)"
+}
+Solid {
+  translation 8 0 30
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.501961 0.901961 0.901961
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "goal_0(10)"
+}
+Solid {
+  translation 8 0 15
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.501961 0.901961 0.901961
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "goal_0(11)"
+}
+Solid {
+  translation 8 0 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.501961 0.901961 0.901961
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "goal_0(12)"
+}
+Solid {
+  translation 0 0 80
+  children [
+    Shape {
+      appearance PBRAppearance {
+      }
+      geometry Cylinder {
+        height 0.2
+        radius 0.6
+      }
+    }
+  ]
+  name "goal_0(2)"
+}
